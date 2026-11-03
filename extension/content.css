@@ -1,0 +1,32 @@
+/*
+ * Hidden by default; shown only when content.js adds gpc-show-<key> to <html>.
+ * Class names here must match GPC.CLASS_PREFIX + GPC.ITEMS[].key in settings.js
+ * (CSS cannot read the GPC global).
+ */
+
+/* account */
+html:not(.gpc-show-account) .bodycontainer > table:first-child,
+html:not(.gpc-show-account) .bodycontainer > table:first-child + hr {
+  display: none !important;
+}
+
+/* subject */
+html:not(.gpc-show-subject) .maincontent > table:first-child,
+html:not(.gpc-show-subject) .maincontent > table:first-child + hr {
+  display: none !important;
+}
+
+/* sender */
+html:not(.gpc-show-sender) table.message > tbody > tr:first-child > td:first-child {
+  display: none !important;
+}
+
+/* date */
+html:not(.gpc-show-date) table.message > tbody > tr:first-child > td[align="right"] {
+  display: none !important;
+}
+
+/* recipients */
+html:not(.gpc-show-recipients) table.message > tbody > tr:has(font.recipient) {
+  display: none !important;
+}

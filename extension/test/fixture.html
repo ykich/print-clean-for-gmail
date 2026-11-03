@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>Gmail Print Clean fixture</title>
+  <script src="../settings.js"></script>
+  <link rel="stylesheet" href="../content.css">
+</head>
+<body>
+  <!--
+    Manual check: open this file in a browser.
+    With no checkbox ticked, only the two "本文" blocks should be visible.
+    Ticking a checkbox adds GPC.showClasses() classes to <html> (content.js is not loaded here).
+  -->
+  <div class="bodycontainer">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td><img class="logo" alt="logo" width="143" height="59"></td>
+        <td align="right"><font size="-1" color="#777"><b>ダミーアカウント</b> &lt;me@example.com&gt;</font></td>
+      </tr>
+    </table>
+    <hr>
+    <div class="maincontent">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><font size="+1"><b>ダミー件名</b></font><br><font size="-1" color="#777">2 件のメッセージ</font></td>
+        </tr>
+      </table>
+      <hr>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" class="message">
+        <tbody>
+          <tr>
+            <td><font size="-1"><b>送信者A</b> &lt;a@example.com&gt;</font></td>
+            <td align="right"><font size="-1">2026年11月1日 10:00</font></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <font size="-1" color="#777" class="recipient">
+                <div class="replyto">返信先: reply-a@example.com</div>
+                <div>To: me@example.com</div>
+              </font>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <table width="100%" cellpadding="12" cellspacing="0" border="0">
+                <tr><td><div>本文1: ダミーテキストです。</div></td></tr>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" class="message">
+        <tbody>
+          <tr>
+            <td><font size="-1"><b>送信者B</b> &lt;b@example.com&gt;</font></td>
+            <td align="right"><font size="-1">2026年11月2日 11:30</font></td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <font size="-1" color="#777" class="recipient">
+                <div class="replyto">返信先: reply-b@example.com</div>
+                <div>To: me@example.com</div>
+              </font>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <table width="100%" cellpadding="12" cellspacing="0" border="0">
+                <tr><td><div>本文2: ダミーテキストです。</div></td></tr>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <fieldset id="gpc-fixture-controls">
+    <legend>表示する項目（fixture 用）</legend>
+  </fieldset>
+  <script>
+    (() => {
+      const controls = document.getElementById('gpc-fixture-controls');
+      const show = { ...GPC.DEFAULT_SHOW };
+      const apply = () => {
+        const root = document.documentElement;
+        const wanted = new Set(GPC.showClasses(show));
+        GPC.ITEMS.forEach(({ key }) => {
+          const cls = GPC.CLASS_PREFIX + key;
+          root.classList.toggle(cls, wanted.has(cls));
+        });
+      };
+      GPC.ITEMS.forEach(({ key, label }) => {
+        const wrapper = document.createElement('label');
+        const box = document.createElement('input');
+        box.type = 'checkbox';
+        box.checked = show[key];
+        box.addEventListener('change', () => {
+          show[key] = box.checked;
+          apply();
+        });
+        wrapper.append(box, ' ', label);
+        controls.append(wrapper, document.createElement('br'));
+      });
+      apply();
+    })();
+  </script>
+</body>
+</html>

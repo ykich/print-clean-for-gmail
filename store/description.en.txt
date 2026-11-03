@@ -1,0 +1,32 @@
+Print only the message body when you use "Print all" in Gmail.
+
+This extension hides the following items on Gmail's print page:
+• Account bar (the Gmail logo and your email address)
+• Subject
+• Sender
+• Date
+• Recipients and reply-to
+
+HOW TO USE
+1. Open an email in Gmail and click the printer icon (Print all).
+2. The print preview shows only the message body.
+3. To keep some items in the printout, click the extension icon and check the items you want to keep. Your choice is saved right away and also applies to a print page that is already open.
+
+FEATURES
+• All five items above are hidden by default.
+• Works with single emails and with threads that contain several messages.
+• Applies your settings before the print dialog opens (waits up to 1.5 seconds).
+• Available in English and Japanese.
+
+PRIVACY AND SECURITY
+• Does not read or send your email content. Makes no network requests at all.
+• Stores only one setting: which items to keep in the printout. If Chrome sync is on, Chrome syncs this setting across your devices.
+• Runs only on Gmail's print page, not on your inbox or other Gmail pages.
+• At install time, Chrome shows "Read and change your data on mail.google.com". This is required to hide items on the print page; the extension does not read your email.
+• Open source: https://github.com/ykich/print-clean-for-gmail
+
+NOTE
+• If loading your settings takes longer than 1.5 seconds, the print dialog opens with the default (all five items hidden).
+• If Gmail changes how its print page works, some items may no longer be hidden. Please report problems at https://github.com/ykich/print-clean-for-gmail/issues
+
+This extension is not an official Google product and is not affiliated with or endorsed by Google LLC. Gmail is a trademark of Google LLC.

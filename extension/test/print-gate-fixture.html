@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>print-gate fixture</title>
+  <!--
+    Manual check: open this file in a browser with one of these hashes, then reload.
+      #ready-later  attribute added 300 ms after load  -> print ~300 ms, calls: 1
+      #never        attribute never added               -> print ~1500 ms, calls: 1
+      #ready-first  attribute present from the start    -> print ~0 ms, calls: 2
+    window.print() is called twice on load to check that waiting calls are merged
+    (when already ready, each call goes straight through, so #ready-first shows 2).
+    The real print dialog is never opened: window.print is replaced by a stub first.
+  -->
+  <script>
+    (() => {
+      const READY_ATTR = 'data-gpc-ready';
+      const mode = location.hash.slice(1) || 'ready-later';
+      const start = performance.now();
+      const calls = [];
+
+      const render = (done) => {
+        const times = calls.map((t) => `${Math.round(t)} ms`).join(', ') || '-';
+        const text = `mode: ${mode} / calls: ${calls.length} / at: ${times}${done ? ' / done' : ''}`;
+        document.title = text;
+        const out = document.getElementById('result');
+        if (out) out.textContent = text;
+      };
+
+      // Stub must be in place before print-gate.js wraps window.print.
+      window.print = function stubPrint() {
+        if (this !== window) throw new Error('print called with wrong this');
+        calls.push(performance.now() - start);
+        render(false);
+      };
+
+      if (mode === 'ready-first') document.documentElement.setAttribute(READY_ATTR, '');
+
+      window.addEventListener('load', () => {
+        window.print();
+        window.print();
+        if (mode === 'ready-later') {
+          setTimeout(() => document.documentElement.setAttribute(READY_ATTR, ''), 300);
+        }
+        setTimeout(() => render(true), 2000);
+      });
+    })();
+  </script>
+  <script src="../print-gate.js"></script>
+</head>
+<body>
+  <p>
+    <a href="#ready-later">#ready-later</a> /
+    <a href="#never">#never</a> /
+    <a href="#ready-first">#ready-first</a>
+    (hash を変えたら再読み込み)
+  </p>
+  <pre id="result">waiting...</pre>
+</body>
+</html>

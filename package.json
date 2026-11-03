@@ -1,0 +1,15 @@
+{
+  "name": "print-clean-for-gmail",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Chrome extension that hides non-body parts of Gmail's print view",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test",
+    "package": "bash tools/package.sh"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

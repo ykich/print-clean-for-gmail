@@ -1,0 +1,72 @@
+{
+  "appName": {
+    "message": "Print Clean for Gmail",
+    "description": "Extension name shown in Chrome and the Web Store. Do not translate."
+  },
+  "appDesc": {
+    "message": "Hide the account bar, subject, sender, date and recipients in Gmail's print view to print only the message body.",
+    "description": "Extension description shown in Chrome and the Web Store (max 132 characters)."
+  },
+  "popupLang": {
+    "message": "en",
+    "description": "BCP 47 language tag of this locale, set as <html lang> of the popup. Use the tag of the translation language (e.g. \"ja\"), not a translated word."
+  },
+  "popupHint": {
+    "message": "Only checked items appear in the printout. Unchecked items are hidden.",
+    "description": "Hint at the top of the popup explaining that checked items are printed and unchecked ones are hidden."
+  },
+  "popupFormLabel": {
+    "message": "Items to show in the printout",
+    "description": "Accessible label (aria-label) of the checkbox list in the popup."
+  },
+  "itemAccount": {
+    "message": "Account bar (logo and your address)",
+    "description": "Checkbox label: the account bar at the top of the print page (Gmail logo and the user's own address)."
+  },
+  "itemSubject": {
+    "message": "Subject",
+    "description": "Checkbox label: the email subject."
+  },
+  "itemSender": {
+    "message": "Sender",
+    "description": "Checkbox label: the sender's name and address."
+  },
+  "itemDate": {
+    "message": "Date",
+    "description": "Checkbox label: the date and time of each message."
+  },
+  "itemRecipients": {
+    "message": "Recipients and reply-to",
+    "description": "Checkbox label: the recipients (To/Cc) and reply-to lines."
+  },
+  "errorSave": {
+    "message": "Couldn't save settings: $ERROR$",
+    "description": "Shown in the popup when saving the setting fails. $ERROR$ is the error text.",
+    "placeholders": {
+      "error": {
+        "content": "$1",
+        "example": "QUOTA_BYTES_PER_ITEM quota exceeded"
+      }
+    }
+  },
+  "errorLoad": {
+    "message": "Couldn't load settings: $ERROR$",
+    "description": "Shown in the popup when loading the saved setting fails. $ERROR$ is the error text.",
+    "placeholders": {
+      "error": {
+        "content": "$1",
+        "example": "Extension context invalidated."
+      }
+    }
+  },
+  "errorInit": {
+    "message": "Couldn't start: $ERROR$",
+    "description": "Shown in the popup when the popup fails to start. $ERROR$ is the error text.",
+    "placeholders": {
+      "error": {
+        "content": "$1",
+        "example": "Cannot read properties of null"
+      }
+    }
+  }
+}
